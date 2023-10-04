@@ -1,0 +1,62 @@
+[
+    {
+        "CategoryName":"Pizza",
+        "name":"Cheeze Pizza",
+        "img":"https://source.unsplash.com/random/900x700/?burger",
+        "options":[{
+            "Regular":"120",
+            "Medium":"210",
+            "Large":"420"
+        }],
+        "description":"Nice food"
+               
+    },
+    {
+        "CategoryName":"Biryani",
+        "name":"Cheeze biryani",
+        "img":"https://source.unsplash.com/random/900x700/?burger",
+        "options":[{
+            "Regular":"120",
+            "Medium":"210",
+            "Large":"420"
+        }],
+        "description":"Nice food"
+               
+    },
+    {
+        "CategoryName":"Starter",
+        "name":"Cheeze starter",
+        "img":"https://source.unsplash.com/random/900x700/?burger",
+        "options":[{
+            "Regular":"120",
+            "Medium":"210",
+            "Large":"420"
+        }],
+        "description":"Nice food"
+               
+    },
+    {
+        "CategoryName":"Biryani",
+        "name":"Cheeze biryani",
+        "img":"https://source.unsplash.com/random/900x700/?burger",
+        "options":[{
+            "Regular":"120",
+            "Medium":"210",
+            "Large":"420"
+        }],
+        "description":"Nice food"
+               
+    },
+    {
+        "CategoryName":"Pizza",
+        "name":"Chicken Pizza",
+        "img":"https://source.unsplash.com/random/900x700/?burger",
+        "options":[{
+            "Regular":"120",
+            "Medium":"210",
+            "Large":"420"
+        }],
+        "description":"Nice food"
+               
+    }
+]

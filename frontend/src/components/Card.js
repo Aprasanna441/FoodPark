@@ -1,0 +1,46 @@
+import React from 'react'
+import { useState } from 'react';
+
+
+const Card = ({item,decreaseQuantity,increaseQuantity}) => {
+   
+
+
+  return (
+    <div className="d-flex flex-wrap   justify-content-around mt-4  align-items-center  ">
+   
+      <div key={item.id} className="card bg-light mt-4" style={{ width: "18rem" }}>
+        <img className="card-img-top" src="..." alt="Card image cap" />
+        <div className="card-body">
+          <h5 className="card-title">{item.name}</h5>
+          <p className="card-text">
+            Some quick example text to build on the card title and make up
+            the bulk of the card's content.
+          </p>
+          <button
+            className="btn btn-danger"
+            onClick={() => decreaseQuantity(item.id)}
+          >
+            -
+          </button>
+          <input
+            type="number"
+            name="quantity"
+            value={item.quantity}
+            className="w-50 rounded"
+          />
+          <button
+            className="btn btn-primary "
+            onClick={() => increaseQuantity(item.id)}
+          >
+            +
+          </button>
+          <p>Total:{item.price*item.quantity}</p>
+        </div>
+      </div>
+
+  </div>
+  )
+}
+
+export default Card
