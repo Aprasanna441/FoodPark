@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Carousel from "../components/Carousel";
@@ -6,39 +6,8 @@ import { NavLink } from "react-router-dom";
 import Card from "../components/Card";
 
 const Home = () => {
-  const menu = [
-    {
-      id: 1,
-      name: "Hello",
-      age: 123,
-      quantity: 1,
-      price:360,
-       
-    },
-    {
-      id: 2,
-      name: "Ramesh",
-      age: 12,
-      quantity: 1,
-      price:190,
-    },
-    {
-      id: 3,
-      name: "Ramesh",
-      age: 12,
-      quantity: 1,
-      price:120,
-    },
-    {
-      id: 4,
-      name: "Ramesh",
-      age: 12,
-      quantity: 1,
-      price:250,
-    },
-  ];
 
-  const [arr, setArr] = useState(menu);
+  const [arr, setArr] = useState([]);
 
   const increaseQuantity = (id) => {
     const updatedMenu = arr.map((item) =>
@@ -55,14 +24,21 @@ const Home = () => {
     setArr(updatedMenu);
   };
 
+  useEffect(  ()=>{
+     fetch('https://dummyjson.com/products')
+    .then(res => res.json())
+    .then(console.log);
+  })
+
   return (
     <div className=" bg-dark">
       <Navbar />
          <Carousel />
-         {/* <form className=" d-flex justify-content-center">  justify-content-center, copy this <form> from navbar for search box */}
-                            {/* <input className="form-control me-2 w-75 bg-white text-dark" type="search" placeholder="Type in..." aria-label="Search" /> */}
-                            {/* <button className="btn text-white bg-success" type="submit">Search</button> */}
-                        {/* </form> */}
+         <form className=" d-flex justify-content-center"> 
+          
+                           <input className="form-control me-2 w-75 bg-white text-dark" type="search" placeholder="Type in..." aria-label="Search" /> 
+                            <button className="btn text-white bg-success" type="submit">Search</button> 
+            </form>
       <div className="d-flex flex-wrap   justify-content-around mt-4  align-items-center  ">
         {arr.map((item) => (
         <Card item={item} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity}/>
