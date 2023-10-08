@@ -125,23 +125,36 @@ export const changePassword = [
     .isStrongPassword()
     .withMessage("Enter A Strong Password"),
   async (req, res) => {
-    const errors =validationResult(req);
+    console.log(req.gu)
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
       // If there are validation errors, send an error response
       return res.status(422).send({ errors: errors.array() });
     }
-    try{
+    try {
       const { password, confirm_password } = req.body;
-    if(password && confirm_password){
-
+      if (password && confirm_password) {
+        if (password === confirm_password) {
+          const salt = await bcrypt.genSalt(10);
+          const hashPassword = await bcrypt.hash(password, salt);
+          await userModel.findByIdAndUpdate(req.user._id, {
+            $set: { password: hashPassword },
+          });
+          res
+            .status(200)
+            .send({ status: "Success", message: "Password Changed Successfully" });
+        } else {
+          res
+            .status(400)
+            .send({ status: "failed", message: "Password and confirm password didnt match" });
+        }
+      } else {
+        res
+          .status(400)
+          .send({ status: "failed", message: "No field can be empty" });
+      }
+    } catch (e) {
+      console.log(e);
     }
-    else{
-res.status(400).send({status:"failed",message:"No field can be empty"})
-    }
-    }
-    catch(e){
-      console.log(e)
-    }
-    
-  }
+  },
 ];
