@@ -1,5 +1,5 @@
 import express from "express";
-import { userSignup } from "../controllers/userController.js";
+import { userSignup,userLogin } from "../controllers/userController.js";
 
 const router=express.Router()
 
@@ -9,6 +9,7 @@ const router=express.Router()
 
 // Public route
 router.post('/signup',userSignup)
+router.post('/login',userLogin)
 
 // protected route
 
