@@ -9,7 +9,7 @@ import {
   BrowserRouter
  
 } from "react-router-dom";
-import Login from "./pages/Login"
+import SignupLogin from './pages/SignupLogin';
 
 function App() {
   return (
@@ -20,7 +20,8 @@ function App() {
   
     <Routes>
       <Route  path="/" element={<Home/>}/>
-      <Route  path="/login" element={<Login/>}/>
+      <Route  path="/auth" element={<SignupLogin/>}/>
+      <Route  path="/auth" element={<SignupLogin/>}/>
     </Routes>
   
 </BrowserRouter>
