@@ -11,23 +11,27 @@ const Home = () => {
 
   const increaseQuantity = (id) => {
     const updatedMenu = arr.map((item) =>
-      item.id === id ? { ...item, quantity: item.quantity + 0.5,total:item.total+item.price } : item
+      item._id === id ? { ...item, quantity: item.quantity + 0.5,total:item.total+item.price } : item
     );
     setArr(updatedMenu);
   };
   const decreaseQuantity = (id) => {
     const updatedMenu = arr.map((item) =>
-      item.id === id && item.quantity >= 1
+      item._id === id && item.quantity >= 1
         ? { ...item, quantity: item.quantity - 0.5,total:item.total-item.price }
         : item
     );
     setArr(updatedMenu);
   };
+  const setProducts=async ()=>{
+    const res=await fetch('http://localhost:8080/api/products/allproducts')
+    const result=await res.json()
+    console.log(result)
+    return setArr(result.data)
+  }
 
   useEffect(  ()=>{
-     fetch('https://dummyjson.com/products')
-    .then(res => res.json())
-    .then(console.log);
+    setProducts()
   })
 
   return (
@@ -40,9 +44,9 @@ const Home = () => {
                             <button className="btn text-white bg-success" type="submit">Search</button> 
             </form>
       <div className="d-flex flex-wrap   justify-content-around mt-4  align-items-center  ">
-        {arr.map((item) => (
+        {arr.map((item) => 
         <Card item={item} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity}/>
-        ))}
+        )}
       </div>
 
       <Footer />

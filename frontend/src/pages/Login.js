@@ -4,13 +4,14 @@ import {TextField} from '@mui/material';
 import {Button} from '@mui/material';
 import isEmail from 'validator/lib/isEmail';
 import isStrongPassword from 'validator/lib/isStrongPassword'
-
-
+import { useNavigate } from 'react-router-dom';
+import { NavLink, Navigate } from 'react-router-dom';
 
 const Login = () => {
-  
+  const navigate=useNavigate()
   const [emailError,setEmailError]=useState('')
   const [passwordError,setPasswordError]=useState('')
+  const [serverError,setServerError]=useState('')
 
 
   
@@ -37,7 +38,25 @@ const Login = () => {
     isStrongPassword(actualData.password,{minLength:8})?setPasswordError(""):setPasswordError("Enter a  min 8 digit alphanumeric password")
     
     
-   
+   if (!(emailError && passwordError)){
+    const res=await fetch('http://localhost:8080/api/account/login',{
+      method:"POST",
+      headers:{
+      'Content-Type':'application/json'
+      },
+      body:JSON.stringify(actualData)
+
+    })
+    const result=await res.json()
+    console.log(result)
+    if( result.status=="Success"){
+      navigate('/')
+    }
+    else{
+      setServerError(result.message)
+     
+    }
+   }
  
 
   }
@@ -79,7 +98,7 @@ const Login = () => {
           label="Password"
          
           variant="standard"
-          type="password"
+          // type="password"
           required
           full
           name="password"
@@ -93,6 +112,9 @@ type="submit"
 >Login</Button>
 
         </Box>
+<NavLink to="/">Forget Password</NavLink>
+
+        <p style={{color:'red',fontWeight:'bolder'}}>{serverError}</p>
     </>
   )
 }

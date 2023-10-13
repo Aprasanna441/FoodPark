@@ -99,7 +99,7 @@ export const userLogin = [
             });
           } else {
             res.send({
-              status: "failed",
+              status: "Failed",
               message: "Email or Password not valid",
             });
           }

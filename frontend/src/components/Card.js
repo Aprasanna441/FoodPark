@@ -7,10 +7,10 @@ const Card = ({item,decreaseQuantity,increaseQuantity}) => {
 
 
   return (
-    <div className="d-flex flex-wrap   justify-content-around mt-4  align-items-center  ">
+    <div className="d-flex flex-wrap   justify-content-around mt-4  align-items-center  " style={{textAlign:'center'}}>
    
-      <div key={item.id} className="card bg-light mt-4" style={{ width: "18rem" }}>
-        <img className="card-img-top" src="..." alt="Card image cap" />
+      <div key={item._id} className="card bg-light mt-4" style={{ width: "18rem" }}>
+        <img className="card-img-top" src={item.img} alt="Card image cap" />
         <div className="card-body">
           <h5 className="card-title">{item.name}</h5>
           <p className="card-text">
@@ -19,7 +19,7 @@ const Card = ({item,decreaseQuantity,increaseQuantity}) => {
           </p>
           <button
             className="btn btn-danger"
-            onClick={() => decreaseQuantity(item.id)}
+            onClick={() => decreaseQuantity(item._id)}
           >
             -
           </button>
@@ -31,11 +31,11 @@ const Card = ({item,decreaseQuantity,increaseQuantity}) => {
           />
           <button
             className="btn btn-primary "
-            onClick={() => increaseQuantity(item.id)}
+            onClick={() => increaseQuantity(item._id)}
           >
             +
           </button>
-          <p>Total:{item.price*item.quantity}</p>
+          {/* <p>Total:{item.price*item.quantity}</p> */}
         </div>
       </div>
 

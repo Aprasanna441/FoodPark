@@ -4,13 +4,16 @@ import { Box, Checkbox, FormControlLabel } from "@mui/material";
 import { TextField, Button } from "@mui/material";
 import isEmail from "validator/lib/isEmail";
 import isStrongPassword from "validator/lib/isStrongPassword";
-
+import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirm_passwordError, setConfirmPasswordError] = useState("");
   const [nameError, setNameError] = useState("");
+  const [serverError,setServerError]=useState('')
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -23,7 +26,7 @@ const Signup = () => {
       email: data.get("email"),
       password: data.get("password"),
       confirm_password: data.get("confirm_password"),
-      tc:data.get("tc"),
+      
     };
     actualData.name==""?setNameError("Enter Name"):setNameError("")
     isEmail(actualData.email)
@@ -37,6 +40,25 @@ const Signup = () => {
       : setConfirmPasswordError("Enter a  min 8 digit alphanumeric password");
     actualData.confirm_password!==passwordError? setPasswordError("")
     : setConfirmPasswordError("Confirm Password Please");
+
+    if (! (emailError && nameError && passwordError && confirm_passwordError)){
+     const res= await fetch("http://localhost:8080/api/account/signup",{
+     method:"POST",
+     headers: {
+      "Content-Type": "application/json",
+    },
+     body:JSON.stringify(actualData)
+    }
+     )
+
+     const result = await res.json();
+    if (result.status=="Success"){
+      navigate('/')
+    }
+    else{
+      setServerError(result.message)
+    }
+    }
   };
   return (
     <>
@@ -66,7 +88,7 @@ const Signup = () => {
           label="Location"
           variant="standard"
           required
-          name="Location"
+          name="location"
         />{" "}
         <br />
         <p style={{color:"red",fontWeight:'bolder'}}>{emailError}</p>
@@ -104,7 +126,7 @@ const Signup = () => {
         <br />
         <FormControlLabel
           control={<Checkbox />}
-          label="I agree  all the   "
+          label="I agree  all the"
           name="tc"
           required
           
@@ -114,6 +136,8 @@ const Signup = () => {
         <Button variant="contained" sx={{ mt: 5 }} type="submit">
           Signup
         </Button>
+        <p style={{color:'red',fontWeight:'bolder'}}>{serverError}</p>
+        
       </Box>
     </>
   );

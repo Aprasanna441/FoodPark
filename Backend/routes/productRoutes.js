@@ -9,7 +9,7 @@ import { showProduct } from "../controllers/productController.js";
 
 
 //public routes
-router.get('/hello',showProduct)
+router.get('/allproducts',showProduct)
 
 
 //protected routes
