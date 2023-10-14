@@ -8,6 +8,7 @@ import Card from "../components/Card";
 const Home = () => {
 
   const [arr, setArr] = useState([]);
+  const [category,setCategory]=useState([])
 
   const increaseQuantity = (id) => {
     const updatedMenu = arr.map((item) =>
@@ -26,23 +27,42 @@ const Home = () => {
   const setProducts=async ()=>{
     const res=await fetch('http://localhost:8080/api/products/allproducts')
     const result=await res.json()
-    console.log(result)
+
+    //code to  remove duplicates from CategoryName that came from Product CategoryName
+    let unique=[]
+   result.data.forEach(item=>{
+    if(!unique.includes(item.CategoryName)){
+      unique.push(item.CategoryName)
+    }
+     
+   })
+   setCategory(unique)
     return setArr(result.data)
   }
+ 
 
   useEffect(  ()=>{
     setProducts()
-  })
+
+
+  },[])
 
   return (
-    <div className=" bg-dark">
+    <>
+  
+    <div className=" bg-dark" style={{textAlign:'center'}}>
       <Navbar />
          <Carousel />
+         
          <form className=" d-flex justify-content-center"> 
           
                            <input className="form-control me-2 w-75 bg-white text-dark" type="search" placeholder="Type in..." aria-label="Search" /> 
                             <button className="btn text-white bg-success" type="submit">Search</button> 
             </form>
+            <select name="" id=""  className='form-select bg-info w-50' style={{margin:10}}>
+      {category.map((item)=><option >{item}</option>)}
+      
+    </select>
       <div className="d-flex flex-wrap   justify-content-around mt-4  align-items-center  ">
         {arr.map((item) => 
         <Card item={item} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity}/>
@@ -51,6 +71,7 @@ const Home = () => {
 
       <Footer />
     </div>
+    </>
   );
 };
 export default Home;

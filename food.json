@@ -1,62 +1,102 @@
 [
     {
-        "CategoryName":"Pizza",
-        "name":"Cheeze Pizza",
-        "img":"https://source.unsplash.com/random/900x700/?burger",
-        "options":[{
-            "Regular":"120",
-            "Medium":"210",
-            "Large":"420"
-        }],
-        "description":"Nice food"
-               
+        "CategoryName": "Pizza",
+        "name": "Cheeze Pizza",
+        "img": "https://source.unsplash.com/random/900x700/?burger",
+        "options": [
+            {
+                "type": "Chicken",
+                "price": 144
+            },
+            {
+                "type": "Regular",
+                "price": 225
+            },
+            {
+                "type": "Cheese Burst",
+                "price": 229
+            }
+        ],
+        "description": "Nice food"
     },
     {
-        "CategoryName":"Biryani",
-        "name":"Cheeze biryani",
-        "img":"https://source.unsplash.com/random/900x700/?burger",
-        "options":[{
-            "Regular":"120",
-            "Medium":"210",
-            "Large":"420"
-        }],
-        "description":"Nice food"
-               
+        "CategoryName": "Biryani",
+        "name": "Cheeze biryani",
+        "img": "https://source.unsplash.com/random/900x700/?burger",
+        "options": [
+            {
+                "type": "Mutton",
+                "price": 120
+            },
+            {
+                "type": "Chicken",
+                "price": 129
+            },
+            {
+                "type": "Hyderbaadi",
+                "price": 125
+            }
+        ],
+        "description": "Nice food"
     },
     {
-        "CategoryName":"Starter",
-        "name":"Cheeze starter",
-        "img":"https://source.unsplash.com/random/900x700/?burger",
-        "options":[{
-            "Regular":"120",
-            "Medium":"210",
-            "Large":"420"
-        }],
-        "description":"Nice food"
-               
+        "CategoryName": "Starter",
+        "name": "Cheeze starter",
+        "img": "https://source.unsplash.com/random/900x700/?burger",
+        "options": [
+            {
+                "type": "Panipuri",
+                "price": 150
+            },
+            {
+                "type": "Chatpate",
+                "price": 120
+            },
+            {
+                "type": "Naan",
+                "price": 221
+            }
+        ],
+        "description": "Nice food"
     },
     {
-        "CategoryName":"Biryani",
-        "name":"Cheeze biryani",
-        "img":"https://source.unsplash.com/random/900x700/?burger",
-        "options":[{
-            "Regular":"120",
-            "Medium":"210",
-            "Large":"420"
-        }],
-        "description":"Nice food"
-               
+        "CategoryName": "Biryani",
+        "name": "Cheeze biryani",
+        "img": "https://source.unsplash.com/random/900x700/?burger",
+        "options": [
+            {
+                "type": "Regular",
+                "price": 110
+            },
+            {
+                "type": "Regular",
+                "price": 220
+            },
+            {
+                "type": "Regular",
+                "price": 520
+            }
+        ],
+        "description": "Nice food"
     },
     {
-        "CategoryName":"Pizza",
-        "name":"Chicken Pizza",
-        "img":"https://source.unsplash.com/random/900x700/?burger",
-        "options":[{
-            "Regular":"120",
-            "Medium":"210",
-            "Large":"420"
-        }],
-        "description":"Nice food"
-               
+        "CategoryName": "Pizza",
+        "name": "Chicken Pizza",
+        "img": "https://source.unsplash.com/random/900x700/?burger",
+        "options": [
+            {
+                "type": "Potato",
+                "price": 110
+            },
+            {
+                "type": "Mushtoom",
+                "price": 144
+            },
+            {
+                "type": "Tomato",
+                "price": 160
+            }
+        ],
+        "description": "Nice food"
     }
 ]
