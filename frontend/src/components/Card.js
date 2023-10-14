@@ -29,6 +29,7 @@ const Card = ({ item, decreaseQuantity, increaseQuantity }) => {
             type="number"
             name="quantity"
             value={item.quantity}
+            style={{textAlign:'center'}}
             className="w-50 rounded"
           />
           <button

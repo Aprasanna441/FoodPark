@@ -17,7 +17,8 @@
                 "price": 229
             }
         ],
-        "description": "Nice food"
+        "description": "Nice food",
+        "quantity":1
     },
     {
         "CategoryName": "Biryani",
@@ -37,7 +38,8 @@
                 "price": 125
             }
         ],
-        "description": "Nice food"
+        "description": "Nice food",
+        "quantity":0.5
     },
     {
         "CategoryName": "Starter",
@@ -57,7 +59,8 @@
                 "price": 221
             }
         ],
-        "description": "Nice food"
+        "description": "Nice food",
+        "quantity":1
     },
     {
         "CategoryName": "Biryani",
@@ -77,7 +80,8 @@
                 "price": 520
             }
         ],
-        "description": "Nice food"
+        "description": "Nice food",
+        "quantity":1
     },
     {
         "CategoryName": "Pizza",
@@ -97,6 +101,7 @@
                 "price": 160
             }
         ],
-        "description": "Nice food"
+        "description": "Nice food",
+        "quantity":1
     }
 ]
