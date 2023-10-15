@@ -6,6 +6,7 @@ import isEmail from 'validator/lib/isEmail';
 import isStrongPassword from 'validator/lib/isStrongPassword'
 import { useNavigate } from 'react-router-dom';
 import { NavLink, Navigate } from 'react-router-dom';
+import {storeToken} from '../services/localStorage'
 
 const Login = () => {
   const navigate=useNavigate()
@@ -50,6 +51,7 @@ const Login = () => {
     const result=await res.json()
     console.log(result)
     if( result.status=="Success"){
+      storeToken(result.token)
       navigate('/')
     }
     else{

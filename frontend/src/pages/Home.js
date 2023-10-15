@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Carousel from "../components/Carousel";
-import { NavLink } from "react-router-dom";
+
 import Card from "../components/Card";
 
 const Home = () => {
@@ -10,30 +10,7 @@ const Home = () => {
   const [category, setCategory] = useState([]);
   const [currentCategory,setCurrentCategory]=useState(null)
 
-  const increaseQuantity = (id) => {
-    const updatedMenu = arr.map((item) =>
-      item._id === id
-        ? {
-            ...item,
-            quantity: item.quantity + 0.5,
-            total: item.total + item.price,
-          }
-        : item
-    );
-    setArr(updatedMenu);
-  };
-  const decreaseQuantity = (id) => {
-    const updatedMenu = arr.map((item) =>
-      item._id === id && item.quantity >= 1
-        ? {
-            ...item,
-            quantity: item.quantity - 0.5,
-            total: item.total - item.price,
-          }
-        : item
-    );
-    setArr(updatedMenu);
-  };
+
 
  
   const setProducts = async () => {
@@ -53,7 +30,7 @@ const Home = () => {
 
   useEffect(() => {
     setProducts();
-  });
+  },[arr]);
 
   return (
     <>
@@ -91,9 +68,9 @@ const Home = () => {
           {arr.map((item) => 
             (currentCategory === null || item.CategoryName === currentCategory)?
             <Card
+            key={item._id}
             item={item}
-            increaseQuantity={increaseQuantity}
-            decreaseQuantity={decreaseQuantity}
+          
           /> : 
           <h1>Empty</h1>
 

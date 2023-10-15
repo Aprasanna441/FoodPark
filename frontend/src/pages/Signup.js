@@ -6,7 +6,7 @@ import isEmail from "validator/lib/isEmail";
 import isStrongPassword from "validator/lib/isStrongPassword";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import  {storeToken} from "../services/localStorage"
 const Signup = () => {
   const navigate = useNavigate();
   const [emailError, setEmailError] = useState("");
@@ -28,7 +28,7 @@ const Signup = () => {
       confirm_password: data.get("confirm_password"),
       
     };
-    actualData.name==""?setNameError("Enter Name"):setNameError("")
+    actualData.name===""?setNameError("Enter Name"):setNameError("")
     isEmail(actualData.email)
       ? setEmailError("")
       : setEmailError("Enter a proper Email");
@@ -52,7 +52,8 @@ const Signup = () => {
      )
 
      const result = await res.json();
-    if (result.status=="Success"){
+    if (result.status==="Success"){
+      storeToken(result.token)
       navigate('/')
     }
     else{
@@ -132,7 +133,7 @@ const Signup = () => {
           
           onChange={() => {}}
         />{" "}
-        <a href="#">Terms and Conditions</a> <br />
+        <NavLink to="/">Terms and Conditions</NavLink> <br />
         <Button variant="contained" sx={{ mt: 5 }} type="submit">
           Signup
         </Button>
