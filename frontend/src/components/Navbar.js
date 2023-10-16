@@ -1,11 +1,19 @@
 import React from "react";
-
-import { NavLink} from "react-router-dom";
-import { getToken,removeToken } from "../services/localStorage";
-
+import { useState } from "react";
+import { useCart } from "../Features/ContextReducer";
+import { useTheme } from "../Features/ThemeReducer";
+import { NavLink } from "react-router-dom";
+import { getToken, removeToken } from "../services/localStorage";
 
 const Navbar = () => {
   const token = getToken();
+  const { state, dispatch } = useCart();
+  const { theme, changeTheme } = useTheme();
+
+  const toggleTheme = async () => {
+    await changeTheme({ type: "TOGGLE_THEME" });
+  };
+
   return (
     <nav
       className="navbar  navbar-expand-lg   bg-warning  text-dark  p-3 w-100"
@@ -21,6 +29,7 @@ const Navbar = () => {
       >
         HOME{" "}
       </NavLink>
+
       <button
         className="navbar-toggler"
         type="button"
@@ -36,20 +45,46 @@ const Navbar = () => {
       <div
         className="collapse navbar-collapse w-100 d-flex-lg justify-content-end "
         id="navbarSupportedContent"
-        
       >
-        <ul className="navbar-nav mr-auto  p-2 " style={{textalign:'center'}}>
+     
+
+        {/* TOGGLE DARK AND WHITE MODE */}
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            role="switch"
+            id="flexSwitchCheckChecked"
+            
+            onChange={toggleTheme}
+          />
+          <label class="form-check-label" for="flexSwitchCheckChecked">
+            DARK MODE
+          </label>
+        </div>
+
+        <ul
+          className="navbar-nav mr-auto  p-2 "
+          style={{ textalign: "center" }}
+        >
           {token ? (
             <>
-            <p>👤: Prasanna</p>
-            <div className="d-flex justify-content-sm-around    ">
-            <button className="btn btn-danger btn-sm mx-3 " onClick={()=>removeToken()} >LOGOUT</button>
-            <button className="btn btn-danger btn-sm mx-3 " onClick={()=>console.log("cart add")} >CART</button>
-            
-            </div>
+              <p>👤: Prasanna</p>
+              <div className="d-flex justify-content-sm-around    ">
+                <button
+                  className="btn btn-danger btn-sm mx-3 "
+                  onClick={() => removeToken()}
+                >
+                  LOGOUT
+                </button>
+                <button
+                  className="btn btn-danger btn-sm mx-3 "
+                  onClick={() => console.log("cart add")}
+                >
+                  CART
+                </button>
+              </div>
             </>
-              
-            
           ) : (
             <li className="nav-item btn btn-primary btn-sm text-white">
               <NavLink className="nav-link text-white" to="/auth">

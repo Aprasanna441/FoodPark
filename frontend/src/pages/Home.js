@@ -2,13 +2,19 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Carousel from "../components/Carousel";
+import {useCart} from "../Features/ContextReducer"
+import { useTheme } from "../Features/ThemeReducer";
 
 import Card from "../components/Card";
 
 const Home = () => {
+  const {state,dispatch}=useCart()
+  const {theme,changeTheme}=useTheme()
+  
   const [arr, setArr] = useState([]);
   const [category, setCategory] = useState([]);
   const [currentCategory,setCurrentCategory]=useState(null)
+  
 
 
 
@@ -34,7 +40,8 @@ const Home = () => {
 
   return (
     <>
-      <div className=" bg-dark" style={{ textAlign: "center" }}>
+    
+      <div className={theme === 'light'? "bg-dark":"bg-light"} style={{ textAlign: "center" }}>
         <Navbar />
         <Carousel />
 
@@ -63,12 +70,21 @@ const Home = () => {
             <option value={item}>{item}</option>
           ))}
         </select>
+       
+        {state.map((it)=>(
+         
+          
+        
+        <p style={{color:"white"}}>Hello{it.price}</p>
+        
+        )
+        )}
         
         <div className="d-flex flex-wrap   justify-content-around mt-4  align-items-center  ">
           {arr.map((item) => 
             (currentCategory === null || item.CategoryName === currentCategory)?
             <Card
-            key={item._id}
+            
             item={item}
           
           /> : 

@@ -1,10 +1,24 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { useState } from "react";
+import {useCart} from "../Features/ContextReducer"
 
 const Card = ( {item}) => {
+  
+  const {state,dispatch}=useCart()
+
   const [price,setPrice]=useState(0)
   const [quantity,setQuantity]=useState(0.5)
+
+  const handleAddToCart= async ()=>{
+    if (price==0){
+    console.log("empty")
+    }
+    else{
+      console.log(price)
+await dispatch({type:"ADD",payload:{item:item,quantity:quantity,price:price*quantity}})
+    }
+  }
 
   return (
     <div
@@ -67,7 +81,7 @@ const Card = ( {item}) => {
           </select>
 
           <p><span style={{fontWeight:'bolder'}}>Total:</span>Rs.{price * quantity}</p>
-<button className="btn btn-danger" onClick={()=>console.log("added to cart",item.name)}>ADD TO CART</button>
+<button className="btn btn-danger" onClick={handleAddToCart}>ADD TO CART</button>
         </div>
       </div>
     </div>

@@ -1,7 +1,10 @@
 
 import './App.css';
-// import Login from "./pages/Login"
 import Home from './pages/Home';
+import MyCart from './pages/MyCart';
+import {CartProvider} from './Features/ContextReducer';
+import { ThemeProvider } from './Features/ThemeReducer';
+
 import {
   Routes, 
   Router,
@@ -14,6 +17,8 @@ import SignupLogin from './pages/SignupLogin';
 function App() {
   return (
 <>
+<ThemeProvider>
+<CartProvider>
 <BrowserRouter>
 
 
@@ -22,11 +27,14 @@ function App() {
       <Route  path="/" element={<Home/>}/>
       <Route  path="/auth" element={<SignupLogin/>}/>
       <Route  path="/auth" element={<SignupLogin/>}/>
+      <Route  path="/mc" element={<MyCart/>}/>
+
     </Routes>
   
 </BrowserRouter>
 
-
+</CartProvider>
+</ThemeProvider>
 </>
   );
 }
