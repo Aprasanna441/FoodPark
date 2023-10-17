@@ -9,14 +9,16 @@ const Card = ( {item}) => {
 
   const [price,setPrice]=useState(0)
   const [quantity,setQuantity]=useState(0.5)
+  const [foodOption,setFoodOption]=useState('')
+  
 
   const handleAddToCart= async ()=>{
     if (price==0){
     console.log("empty")
     }
     else{
-      console.log(price)
-await dispatch({type:"ADD",payload:{item:item,quantity:quantity,price:price*quantity}})
+      
+await dispatch({type:"ADD",payload:{name:item.name,option:foodOption,rate:price,quantity:quantity,price:price*quantity}})
     }
   }
 
@@ -69,12 +71,18 @@ await dispatch({type:"ADD",payload:{item:item,quantity:quantity,price:price*quan
             className="form-select bg-info w-80"
             style={{ textAlign: "center" }}
             aria-label="Default select example"
-            onChange={(e)=>setPrice(e.target.value)}
+            onChange={(e)=>{
+             
+              setPrice((e.target.value).split(",")[0])
+              setFoodOption((e.target.value).split(",")[1])
+              
+
+            }}
           >
-            <option value="Select Food Category">Select Food</option>
+            <option >Select Food</option>
             
             
-           {item.options.map((e,i)=><option value={e.price}  >{e.type}</option>)}
+           {item.options.map((e,i)=><option  value={[e.price,e.type]}  >{e.type}</option>)}
            
             
             

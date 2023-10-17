@@ -2,13 +2,15 @@ import React from "react";
 import { useState } from "react";
 import { useCart } from "../Features/ContextReducer";
 import { useTheme } from "../Features/ThemeReducer";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { getToken, removeToken } from "../services/localStorage";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const token = getToken();
   const { state, dispatch } = useCart();
   const { theme, changeTheme } = useTheme();
+  const navigate=useNavigate()
 
   const toggleTheme = async () => {
     await changeTheme({ type: "TOGGLE_THEME" });
@@ -16,6 +18,7 @@ const Navbar = () => {
 
   return (
     <nav
+    
       className="navbar  navbar-expand-lg   bg-warning  text-dark  p-3 w-100"
       style={{ backgroundColor: "#0496C7" }}
     >
@@ -73,16 +76,17 @@ const Navbar = () => {
               <div className="d-flex justify-content-sm-around    ">
                 <button
                   className="btn btn-danger btn-sm mx-3 "
-                  onClick={() => removeToken()}
+                  onClick={() => {removeToken()
+                  localStorage.removeItem("cartitem")
+                  }}
                 >
                   LOGOUT
                 </button>
-                <button
+                <NavLink
                   className="btn btn-danger btn-sm mx-3 "
-                  onClick={() => console.log("cart add")}
-                >
-                  CART
-                </button>
+                  to="/mc"
+                >MY CART</NavLink>
+                
               </div>
             </>
           ) : (

@@ -10,7 +10,9 @@ import Card from "../components/Card";
 const Home = () => {
   const {state,dispatch}=useCart()
   const {theme,changeTheme}=useTheme()
-  
+  const lo=localStorage.getItem("cartitem")
+ 
+     
   const [arr, setArr] = useState([]);
   const [category, setCategory] = useState([]);
   const [currentCategory,setCurrentCategory]=useState(null)
@@ -36,13 +38,14 @@ const Home = () => {
 
   useEffect(() => {
     setProducts();
+    
   },[arr]);
 
   return (
     <>
     
       <div className={theme === 'light'? "bg-dark":"bg-light"} style={{ textAlign: "center" }}>
-        <Navbar />
+        
         <Carousel />
 
         <form className=" d-flex justify-content-center">
@@ -104,7 +107,7 @@ const Home = () => {
 
         </div>
 
-        <Footer />
+        
       </div>
     </>
   );
