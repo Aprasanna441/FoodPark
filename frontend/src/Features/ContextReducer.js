@@ -10,11 +10,39 @@ const reducer = (state, action) => {
       localStorage.setItem("cartitem",JSON.stringify(data))
       return [...state,action.payload]
     case "REMOVE":
-      return [...state, [action.data]];
+      let newArr= [...state]
+      newArr.splice(action.index,1)
+      localStorage.setItem("cartitem",JSON.stringify(newArr))
+      return newArr
+    case "INCREASE":
+      let arr=[...state]
+      arr.splice(action.index,1,action.payload)
+      
+
+
+
+      
+      
+      localStorage.setItem("cartitem",JSON.stringify(arr))
+      return arr
+    case "DECREASE":
+      let arrDecr=[...state]
+      arrDecr.splice(action.index,1,action.payload)
+      
+
+
+
+      
+      
+      localStorage.setItem("cartitem",JSON.stringify(arrDecr))
+      return arrDecr
+
+
+     
     
     default:
     
-      console.log("No ac selected");
+      
   }
 };
 

@@ -91,7 +91,7 @@ const Home = () => {
             item={item}
           
           /> : 
-          <h1>Empty</h1>
+          null
 
           
          

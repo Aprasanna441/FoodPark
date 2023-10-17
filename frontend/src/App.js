@@ -28,7 +28,7 @@ function App() {
       <Route  path="/" element={<Layout/>}>
       <Route  path="/" element={<Home/>}/>
       
-      <Route  path="/mc" element={<MyCart/>}/>
+      <Route  path="/mc" element={localStorage.getItem("authToken")?<MyCart/>:<SignupLogin/>}/>
         </Route>
       <Route  path="/auth" element={<SignupLogin/>}/>
       <Route  path="/auth" element={<SignupLogin/>}/>

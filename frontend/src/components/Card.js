@@ -22,6 +22,7 @@ await dispatch({type:"ADD",payload:{name:item.name,option:foodOption,rate:price,
     }
   }
 
+
   return (
     <div
       className="d-flex flex-wrap   justify-content-around mt-4  align-items-center  "
