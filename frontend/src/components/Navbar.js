@@ -11,6 +11,17 @@ const Navbar = () => {
   const { state, dispatch } = useCart();
   const { theme, changeTheme } = useTheme();
   const navigate=useNavigate()
+  
+  const num=()=>{
+    if (localStorage.getItem("cartitem")){
+   let  len=JSON.parse(localStorage.getItem("cartitem")).length
+    return len
+    }
+    else{
+      return 0
+    }
+  }
+  
 
   const toggleTheme = async () => {
     await changeTheme({ type: "TOGGLE_THEME" });
@@ -58,7 +69,7 @@ const Navbar = () => {
             type="checkbox"
             role="switch"
             id="flexSwitchCheckChecked"
-            
+            checked="false"
             onChange={toggleTheme}
           />
           <label class="form-check-label" for="flexSwitchCheckChecked">
@@ -85,7 +96,7 @@ const Navbar = () => {
                 <NavLink
                   className="btn btn-danger btn-sm mx-3 "
                   to="/mc"
-                >MY CART</NavLink>
+                >MY CART <span style={{color:'white',backgroundColor:'black',padding:5,borderRadius:15}}>{num()}</span></NavLink>
                 
               </div>
             </>

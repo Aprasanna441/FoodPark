@@ -19,8 +19,8 @@ const MyCart = () => {
 
   return (
     <div className={theme === "dark" ? " bg-dark" : ""}>
-      <h1>MY CART</h1>
-      {localStorage.getItem("cartitem") ? (
+      <h1 style={{textAlign:'center',color:'red'}}>MY CART</h1>
+      {JSON.parse(localStorage.getItem("cartitem")).length>=1 ? (
         <>
           <table className={theme === "dark" ? "table table-dark" : "table"}>
             <thead className="thead-dark">
@@ -58,7 +58,7 @@ const MyCart = () => {
                               i.quantity === 0.5
                                 ? i.quantity
                                 : i.quantity-0.5,
-                            price:i.quantity === 0.5?i.price: i.price * (i.quantity - 0.5),
+                            price:i.quantity === 0.5? i.price: i.rate * (i.quantity - 0.5),
                           },
                         })
                       }
@@ -82,7 +82,7 @@ const MyCart = () => {
                             option: i.option,
                             rate: i.rate,
                             quantity: i.quantity + 0.5,
-                            price: i.price * (i.quantity + 0.5),
+                            price: i.rate * (i.quantity + 0.5),
                           },
                         })
                       }

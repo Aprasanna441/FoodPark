@@ -44,7 +44,7 @@ const Home = () => {
   return (
     <>
     
-      <div className={theme === 'light'? "bg-dark":"bg-light"} style={{ textAlign: "center" }}>
+      <div className={theme === 'dark'? "bg-dark":"bg-light"} style={{ textAlign: "center" }}>
         
         <Carousel />
 
@@ -74,14 +74,7 @@ const Home = () => {
           ))}
         </select>
        
-        {state.map((it)=>(
-         
-          
-        
-        <p style={{color:"white"}}>Hello{it.price}</p>
-        
-        )
-        )}
+       
         
         <div className="d-flex flex-wrap   justify-content-around mt-4  align-items-center  ">
           {arr.map((item) => 

@@ -5,10 +5,11 @@ const CartContext = createContext();
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD":
-      const data=[...state,action.payload]
-      
+    
+      const data=[...state,action.payload]      
       localStorage.setItem("cartitem",JSON.stringify(data))
       return [...state,action.payload]
+      
     case "REMOVE":
       let newArr= [...state]
       newArr.splice(action.index,1)
