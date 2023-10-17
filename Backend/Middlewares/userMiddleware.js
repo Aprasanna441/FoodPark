@@ -11,8 +11,7 @@ export var checkToken= async (req,res,next)=>{
             
             token=authorization.split(' ')[1]
             const {userID}=jwt.verify(token,process.env.JWT_SECRET_KEY)
-            console.log("ejr")
-            console.log("Hi",userID)
+         
             req.user = await userModel.findById(userID).select('-password')
             
             next()

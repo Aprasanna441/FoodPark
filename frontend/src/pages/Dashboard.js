@@ -13,7 +13,7 @@ const Dashboard = () => {
             }
         })
         const result=await res.json()
-        console.log(result)
+       
         setData(result.data)
     }
     useEffect(()=>{
@@ -25,7 +25,7 @@ const Dashboard = () => {
   <div className="card-body">
     <h5 className="card-title">Name:{data.name}</h5>
     <h5 className="card-title">Email:{data.email}</h5>
-    <h5 className="card-title">Member Since:{data.joined_on.split("T")[0]} {data.joined_on.split("T")[1]}</h5>
+    <h5 className="card-title">Member Since:{data.joined_on}</h5>
     <h5 className="card-title">Location:{data.location}</h5>
    
     <NavLink to="/" className="btn btn-primary">Change Password</NavLink>

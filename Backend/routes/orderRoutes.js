@@ -7,12 +7,12 @@ import { makeOrder,viewOrder } from '../controllers/orderController.js'
 
 
 // middleware
-router.get('/makeorder',checkToken)
-router.post('/viewOrder',checkToken)
+router.post('/makeorder',checkToken)
+router.get('/viewOrder',checkToken)
 
 // protected routes
-router.get('/makeorder',makeOrder)
-router.post('/viewOrder',viewOrder)
+router.post('/makeorder',makeOrder)
+router.get('/viewOrder',viewOrder)
 
 export default router
 

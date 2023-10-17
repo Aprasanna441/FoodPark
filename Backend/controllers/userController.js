@@ -21,6 +21,7 @@ export const userSignup = [
       req.body;
 
     const user = await userModel.findOne({ email: { $eq: email } });
+    
     if (user) {
       res
         .status(400)
