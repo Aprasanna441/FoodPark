@@ -83,12 +83,13 @@ const Navbar = () => {
         >
           {token ? (
             <>
-              <p>👤: Prasanna</p>
+              <NavLink className="btn btn-primary" to='/dashboard'> 👤Dashboard</NavLink>
               <div className="d-flex justify-content-sm-around    ">
                 <button
                   className="btn btn-danger btn-sm mx-3 "
                   onClick={() => {removeToken()
                   localStorage.removeItem("cartitem")
+                  navigate('/')
                   }}
                 >
                   LOGOUT

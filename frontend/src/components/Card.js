@@ -10,13 +10,14 @@ const Card = ({ item }) => {
   const [quantity, setQuantity] = useState(0.5);
   const [foodOption, setFoodOption] = useState("");
   const data = JSON.parse(localStorage.getItem("cartitem"));
+  
 
   const [added, toggleAdded] = useState(false);
 
   const handleAddToCart = async () => {
     if (price == 0) {
       console.log("empty");
-    } else if (data.length >= 1) {
+    } else if  ( data && data.length >= 1) {
       data.forEach((elem) => {
         if (elem.name === item.name && elem.option === foodOption) {
           toggleAdded(!added);
@@ -94,7 +95,8 @@ const Card = ({ item }) => {
             style={{ textAlign: "center" }}
             aria-label="Default select example"
             onChange={(e) => {
-              toggleAdded(!added)
+              toggleAdded(false)
+              
               setPrice(e.target.value.split(",")[0]);
               setFoodOption(e.target.value.split(",")[1]);
             }}
@@ -112,7 +114,7 @@ const Card = ({ item }) => {
           </p>
 
 {added?
-          <p style={{color:'red',fontWeight:'bolder'}}>Warning</p>:""}
+          <p style={{color:'red',fontWeight:'bolder'}}>ALREADY IN CART</p>:""}
             <button className="btn btn-danger" onClick={handleAddToCart}>
               ADD TO CART
             </button>

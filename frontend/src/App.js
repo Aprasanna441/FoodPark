@@ -14,6 +14,7 @@ import {
  
 } from "react-router-dom";
 import SignupLogin from './pages/SignupLogin';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -27,8 +28,9 @@ function App() {
     <Routes>
       <Route  path="/" element={<Layout/>}>
       <Route  path="/" element={<Home/>}/>
+      <Route  path="/dashboard" element={localStorage.getItem("authToken")?<Dashboard/>:<Home/>}/>
       
-      <Route  path="/mc" element={localStorage.getItem("authToken")?<MyCart/>:<SignupLogin/>}/>
+      <Route  path="/mc" element={localStorage.getItem("authToken")?<MyCart/>:<Home/>}/>
         </Route>
       <Route  path="/auth" element={<SignupLogin/>}/>
       <Route  path="/auth" element={<SignupLogin/>}/>

@@ -100,7 +100,7 @@ const Login = () => {
           label="Password"
          
           variant="standard"
-          // type="password"
+          type="password"
           required
           full
           name="password"

@@ -146,15 +146,20 @@ export const changePassword = [
         } else {
           res
             .status(400)
-            .send({ status: "failed", message: "Password and confirm password didnt match" });
+            .send({ status: "Failed", message: "Password and confirm password didnt match" });
         }
       } else {
         res
           .status(400)
-          .send({ status: "failed", message: "No field can be empty" });
+          .send({ status: "Failed", message: "No field can be empty" });
       }
     } catch (e) {
       console.log(e);
     }
   },
 ];
+
+export const getUserInfo= async (req,res)=>{
+  res.status(200).send({status:"Success",data:req.user})
+
+}
