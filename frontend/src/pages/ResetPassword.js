@@ -9,9 +9,13 @@ import FormHelperText from "@mui/material/FormHelperText";
 import { TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
+import { useParams } from 'react-router-dom';
 
-const ChangePassword = () => {
+const ResetPassword = (props) => {
+    
     const navigate=useNavigate()
+    const { token, id } = useParams();
+    console.log(id)
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const handleChange = async (e) => {
@@ -24,13 +28,14 @@ const actualData={
 }
 
     const res = await fetch(
-      "http://localhost:8080/api/account/changePassword",
+      `http://localhost:8080/api/account/resetPassword/${id}/${token}`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("authToken")}`,
+         
         },
+        
         body: JSON.stringify(actualData),
       }
     );
@@ -38,9 +43,9 @@ const actualData={
     console.log(result)
 
     if (result.status === "Failed") {
-      setError(result.message);
+      setError(<h1 style={{color:'red',fontWeight:'bolder'}}>{result.message}</h1>);
     } else {
-      setMessage(result.message);
+      setMessage(<h1 style={{color:'green',fontWeight:'bolder'}}>{result.message}</h1>);
       setTimeout(() => {
         localStorage.removeItem("authToken")
         navigate('/auth')
@@ -52,6 +57,7 @@ const actualData={
     <>
       {" "}
       <h1 style={{textAlign:'center'}}>Change Password</h1>
+      {error}
       <h1 style={{ color: "red", fontWeight: "bolder",textAlign:'center' }}>{error}</h1>
       <h1 style={{ color: "color", fontWeight: "bolder",textAlign:'center' }}>{message}</h1>
       <Box
@@ -89,7 +95,7 @@ const actualData={
           />
 <br /> <br />
           <Button variant="contained" type="submit">
-            Change
+            Reset
           </Button>
         
       </Box>
@@ -97,4 +103,4 @@ const actualData={
   );
 };
 
-export default ChangePassword;
+export default ResetPassword;

@@ -19,6 +19,7 @@ import Checkout from './components/Checkout';
 import Esewa from './pages/Esewa';
 import MyOrders from './pages/MyOrders';
 import ChangePassword from './pages/ChangePassword';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
       <Route  path="/" element={<Home/>}/>
       <Route  path="/success" element={<Success/>}/>
       <Route  path="/fail" element={<Failure/>}/>
+      <Route  path="/resetpassword/:id/:token" element={<ResetPassword/>}/>
       <Route  path="/dashboard" element={localStorage.getItem("authToken")?<Dashboard/>:<Home/>}/>
       <Route  path="/checkout" element={localStorage.getItem("authToken")?<Checkout/>:<Home/>}/>
       <Route  path="/myorders" element={localStorage.getItem("authToken")?<MyOrders/>:<Home/>}/>

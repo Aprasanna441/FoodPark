@@ -10,10 +10,40 @@ import {storeToken} from '../services/localStorage'
 
 const Login = () => {
   const navigate=useNavigate()
+  const [message,setMessage]=useState('')
   const [emailError,setEmailError]=useState('')
   const [passwordError,setPasswordError]=useState('')
   const [serverError,setServerError]=useState('')
+  const [inputBox,toggleInputBox]=useState(false)
 
+
+
+  const forgetPassword= async (e)=>{
+    e.preventDefault()
+const data=new FormData(e.currentTarget)
+console.log(data.get("forgetemail"))
+const actualData={
+  email:data.get("forgetemail")
+}
+ const res=await fetch("http://localhost:8080/api/account/sendresetemail",{
+  method:"POST",
+  headers:{
+    'Content-Type':'application/json'
+    },
+  body:JSON.stringify(actualData)
+ })
+ const result= await res.json()
+ 
+ if (result.status=="Failed"){
+   setMessage(<h1 style={{color:'red',fontWeight:'bolder'}}>{result.message}</h1>)
+ }
+ else{
+setMessage(<h1 style={{color:'green',fontWeight:'bolder'}}>{result.message}</h1>)
+ }
+
+
+
+  }
 
   
     
@@ -114,8 +144,35 @@ type="submit"
 >Login</Button>
 
         </Box>
-<NavLink to="/">Forget Password</NavLink>
+<NavLink  onClick={()=>toggleInputBox(!inputBox)}>Forget Password</NavLink>
+<br />
+{inputBox?
+<Box component="form"
+        sx={{ textAlign: "center" }}
+        noValidate
+        autoComplete="off"
+        style={{ marginTop: "24px" }}
+        onSubmit={forgetPassword}>
+            <TextField
+          id="standard-basic"
+          label="Email"
+         
+          variant="standard"
+          
+          required
+          full
+          name="forgetemail"
+        />
+        {message}
+        <Button variant='contained'
 
+sx={{mt:5}}
+type="submit"
+
+>Send Me Reset Password Link</Button>
+
+</Box>
+:""}
         <p style={{color:'red',fontWeight:'bolder'}}>{serverError}</p>
     </>
   )
