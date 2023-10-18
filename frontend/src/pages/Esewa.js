@@ -29,7 +29,7 @@ const p="EPAYTEST"
 
  <input type="text" id="failure_url"  class="form-control"  name="failure_url" value="http://localhost:3000/fail" required hidden/>
  
- <input type="text" id="signed_field_names" class="form-control"  name="signed_field_names" value={[location.state.total_amount,location.state.total_amount,location.state.id,"EPAYTEST"]} hidden required/>
+ <input type="text" id="signed_field_names" class="form-control"  name="signed_field_names"   hidden />
 
  <input type="text"  id="signature"  class="form-control"  name="signature"   required  value="cKZlaPgGI1GCtBONkLHZpHQojI2fA8vCr9ISAcjw3w0="/>
  <input  type="submit"/> 

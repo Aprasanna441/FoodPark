@@ -18,6 +18,7 @@ import Dashboard from './pages/Dashboard';
 import Checkout from './components/Checkout';
 import Esewa from './pages/Esewa';
 import MyOrders from './pages/MyOrders';
+import ChangePassword from './pages/ChangePassword';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
       <Route  path="/dashboard" element={localStorage.getItem("authToken")?<Dashboard/>:<Home/>}/>
       <Route  path="/checkout" element={localStorage.getItem("authToken")?<Checkout/>:<Home/>}/>
       <Route  path="/myorders" element={localStorage.getItem("authToken")?<MyOrders/>:<Home/>}/>
+      <Route  path="/changepassword" element={localStorage.getItem("authToken")?<ChangePassword/>:<Home/>}/>
       
       <Route  path="/mc" element={localStorage.getItem("authToken")?<MyCart/>:<Home/>}/>
         </Route>

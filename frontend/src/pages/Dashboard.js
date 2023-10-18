@@ -29,7 +29,7 @@ const Dashboard = () => {
     <h5 className="card-title">Member Since:{data.joined_on}</h5>
     <h5 className="card-title">Location:{data.location}</h5>
    
-    <NavLink to="/" className="btn btn-primary">Change Password</NavLink>
+    <NavLink to="/changepassword" className="btn btn-primary">Change Password</NavLink>
     <NavLink to="/myorders" className="btn btn-primary">See Orders</NavLink>
     
   </div>
