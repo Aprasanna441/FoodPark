@@ -17,6 +17,7 @@ import SignupLogin from './pages/SignupLogin';
 import Dashboard from './pages/Dashboard';
 import Checkout from './components/Checkout';
 import Esewa from './pages/Esewa';
+import MyOrders from './pages/MyOrders';
 
 function App() {
   return (
@@ -30,13 +31,16 @@ function App() {
     <Routes>
       <Route  path="/" element={<Layout/>}>
       <Route  path="/" element={<Home/>}/>
+      <Route  path="/success" element={<Success/>}/>
+      <Route  path="/fail" element={<Failure/>}/>
       <Route  path="/dashboard" element={localStorage.getItem("authToken")?<Dashboard/>:<Home/>}/>
       <Route  path="/checkout" element={localStorage.getItem("authToken")?<Checkout/>:<Home/>}/>
+      <Route  path="/myorders" element={localStorage.getItem("authToken")?<MyOrders/>:<Home/>}/>
       
       <Route  path="/mc" element={localStorage.getItem("authToken")?<MyCart/>:<Home/>}/>
         </Route>
       <Route  path="/auth" element={<SignupLogin/>}/>
-      <Route  path="/auth" element={<SignupLogin/>}/>
+      
       <Route  path="/esewa" element={<Esewa/>}/>
 
     </Routes>
@@ -48,5 +52,21 @@ function App() {
 </>
   );
 }
+
+
+
+const Success = () => {
+  return (
+    <div>Success</div>
+  )
+}
+
+const Failure = () => {
+  return (
+    <div>Failure</div>
+  )
+}
+
+
 
 export default App;

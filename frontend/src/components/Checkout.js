@@ -24,16 +24,31 @@ const Checkout = () => {
 
 
   const data = JSON.parse(localStorage.getItem("cartitem"));
+
+  //total amount
+  const totalPrice = () => {
+    let sum = 0;
+    data.forEach((element) => {
+      sum += element.price;
+    });
+
+    return sum;
+  };
+
+  
+
   const submitHandler = async (e) => {
 e.preventDefault()
 const dataa=new FormData(e.currentTarget)
+
 
 const actualData={
     payment_method:method,
     delivery_address:location===""?dataa.get("location"):location,
     phoneNumber:dataa.get("phone"),
     status:"Pending and Unpaid",
-    order_data:data
+    order_data:data,
+    total_amount:totalPrice()
     
 }
 
@@ -50,10 +65,16 @@ const actualData={
     if (result.status==="Failed"){
         setError("Failed to Order")
     }
+
     else{
-        navigate('/esewa')
+      localStorage.removeItem("cartitem")
+      
+        navigate('/esewa',{state:{total_amount:result.info.total_amount,id:result.info.id}})
     }
   };
+
+
+  
   return (
     <>
       <h1 style={{ textAlign: "center" }}>CHECKOUT FORM</h1>

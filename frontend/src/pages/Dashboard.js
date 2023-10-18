@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import MyOrders from './MyOrders'
 
 const Dashboard = () => {
    const [data,setData]=useState([])
@@ -29,8 +30,11 @@ const Dashboard = () => {
     <h5 className="card-title">Location:{data.location}</h5>
    
     <NavLink to="/" className="btn btn-primary">Change Password</NavLink>
-    <NavLink to="/" className="btn btn-primary">See Orders</NavLink>
+    <NavLink to="/myorders" className="btn btn-primary">See Orders</NavLink>
+    
   </div>
+  
+
 </div>
   )
 }

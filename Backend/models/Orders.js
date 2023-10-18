@@ -5,7 +5,7 @@ const orderSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
+    
   },
   order_data: {
     type: Array,
@@ -20,6 +20,7 @@ const orderSchema = new mongoose.Schema({
     phoneNumber:String,
     deliveryAddress: String,
     status: String,
+    totalPrice:Number
   },
 );
 
