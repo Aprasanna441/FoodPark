@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useCart } from "../Features/ContextReducer";
 import { useTheme } from "../Features/ThemeReducer";
+import { useNavigate } from 'react-router-dom';
 
 const MyCart = () => {
+  const navigate=useNavigate()
   const { state, dispatch } = useCart();
   const { theme, changeTheme } = useTheme();
   const lo = localStorage.getItem("cartitem");
@@ -105,7 +107,7 @@ const MyCart = () => {
       )}
       <button
         className="btn btn-primary"
-        onClick={() => console.log("order placed")}
+        onClick={() => navigate('/checkout')}
       >
         CHECK OUT
       </button>

@@ -17,10 +17,11 @@ const orderSchema = new mongoose.Schema({
       type: Date,
       default: Date.now,
     },
+    phoneNumber:String,
     deliveryAddress: String,
     status: String,
   },
 );
 
-const orderModel = mongoose.model("order", order);
+const orderModel = mongoose.model("order", orderSchema);
 export default orderModel;

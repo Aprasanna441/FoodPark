@@ -16,6 +16,7 @@ import {
 import SignupLogin from './pages/SignupLogin';
 import Dashboard from './pages/Dashboard';
 import Checkout from './components/Checkout';
+import Esewa from './pages/Esewa';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         </Route>
       <Route  path="/auth" element={<SignupLogin/>}/>
       <Route  path="/auth" element={<SignupLogin/>}/>
+      <Route  path="/esewa" element={<Esewa/>}/>
 
     </Routes>
   
