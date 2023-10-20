@@ -11,6 +11,10 @@ const Home = () => {
   const {state,dispatch}=useCart()
   const {theme,changeTheme}=useTheme()
   const lo=localStorage.getItem("cartitem")
+
+
+  const [page,setPage]=useState(0)
+
  
      
   const [arr, setArr] = useState([]);
@@ -18,7 +22,7 @@ const Home = () => {
   const [currentCategory,setCurrentCategory]=useState(null)
   
 
-
+  
 
  
   const setProducts = async () => {
@@ -33,7 +37,7 @@ const Home = () => {
       }
     });
     setCategory(unique);
-    return setArr(result.data);
+    return setArr(result.data.slice(page,page+6));
   };
 
   useEffect(() => {
@@ -102,6 +106,24 @@ const Home = () => {
 
         
       </div>
+      <div className="d-flex justify-content-center mt-5"><nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" onClick={()=>page>0?setPage(page-6):page} aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+     <li class="page-item"><a class="page-link" href="#">{page/6}</a></li>
+
+    <li class="page-item">
+      <a class="page-link" href="#" onClick={()=>setPage(page+6)} aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav></div>
     </>
   );
 };
