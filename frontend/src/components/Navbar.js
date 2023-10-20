@@ -97,6 +97,7 @@ const Navbar = () => {
                 <NavLink
                   className="btn btn-danger btn-sm mx-3 "
                   to="/mc"
+                  
                 >MY CART <span style={{color:'white',backgroundColor:'black',padding:5,borderRadius:15}}>{num()}</span></NavLink>
                 
               </div>

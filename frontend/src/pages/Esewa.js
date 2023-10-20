@@ -9,7 +9,7 @@ const p="EPAYTEST"
     <>
     <h1>Proceed to Epay</h1>
     {/* v2 doesnt work did my time loss  */}
- <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST">
+ {/* <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST">
   <label htmlFor="amount">Amount</label>
  <input type="text" id="amount" class="form-control" name="amount" value={location.state.total_amount} required/>
  <label htmlFor="amount">Tax Amount</label>
@@ -33,10 +33,10 @@ const p="EPAYTEST"
 
  <input type="text"  id="signature"  class="form-control"  name="signature"   required  value="cKZlaPgGI1GCtBONkLHZpHQojI2fA8vCr9ISAcjw3w0="/>
  <input  type="submit"/> 
- </form>
+ </form> */}
 
 
-    {/* <form action="https://uat.esewa.com.np/epay/main" method="POST">
+    <form action="https://uat.esewa.com.np/epay/main" method="POST">
     <input value={location.state.total_amount} name="tAmt" />
     <input value={location.state.total_amount} name="amt" />
     <input value="0" name="txAmt" hidden/>
@@ -44,10 +44,10 @@ const p="EPAYTEST"
     <input value="0" name="pdc" hidden/>
     <input value="EPAYTEST" name="scd" hidden/>
     <input value={location.state.id} name="pid" hidden/>
-    <input value="http://localhost:3000/success/?oid=" hidden name="su"/>
+    <input value="http://localhost:3000/success" hidden name="su"/>
     <input value="http://localhost:3000/fail" hidden name="fu"/>
     <input value="Submit" type="submit"/>
-    </form> */}
+    </form>
 
 
     </>

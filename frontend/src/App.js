@@ -17,9 +17,11 @@ import SignupLogin from './pages/SignupLogin';
 import Dashboard from './pages/Dashboard';
 import Checkout from './components/Checkout';
 import Esewa from './pages/Esewa';
+import Khalti from './pages/Khalti';
 import MyOrders from './pages/MyOrders';
 import ChangePassword from './pages/ChangePassword';
 import ResetPassword from './pages/ResetPassword';
+import KhaltiVerify from './pages/KhaltiVerify';
 
 function App() {
   return (
@@ -36,6 +38,7 @@ function App() {
       <Route  path="/success" element={<Success/>}/>
       <Route  path="/fail" element={<Failure/>}/>
       <Route  path="/resetpassword/:id/:token" element={<ResetPassword/>}/>
+      <Route  path="/Khaltiverify" element={<KhaltiVerify/>}/>
       <Route  path="/dashboard" element={localStorage.getItem("authToken")?<Dashboard/>:<Home/>}/>
       <Route  path="/checkout" element={localStorage.getItem("authToken")?<Checkout/>:<Home/>}/>
       <Route  path="/myorders" element={localStorage.getItem("authToken")?<MyOrders/>:<Home/>}/>
@@ -46,6 +49,8 @@ function App() {
       <Route  path="/auth" element={<SignupLogin/>}/>
       
       <Route  path="/esewa" element={<Esewa/>}/>
+      <Route  path="/Khalti" element={<Khalti/>}/>
+
 
     </Routes>
   

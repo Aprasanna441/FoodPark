@@ -19,7 +19,7 @@ else{
         
       })
       await order.save()
-console.log(order._id)
+
       
       
       res.status(200).send({status:"Success",message:"Successful"})
@@ -35,7 +35,7 @@ console.log(order._id)
             totalPrice:total_amount
           })
         await  order.save()
-        console.log(order._id)
+        
           res.status(200).send({status:"Success",info:{id:order._id,total_amount:total_amount}})
 
         
@@ -56,8 +56,24 @@ console.log(order._id)
 
 export const viewOrder=async (req,res)=>{
   const us=req.user.email 
-  console.log(us)
+
   const data= await orderModel.find({email:us})
   // console.log(data)
   res.status(200).send({status:"Success",data:data})
+}
+
+export const payOrder= async (req,res)=>{
+    const {id}=req.body 
+
+    
+    
+    if(id){
+      await orderModel.findByIdAndUpdate(id,{
+        $set:{status:"Placed and Paid"}
+      })
+    res.status(200).send({status:"Success",message:"Transaction Success Data saved"})
+    }
+    else{
+      res.status(400).send({status:"Failed",message:"Transaction Failed .The flow was disrupted due to internet connection or any other."})
+    }
 }

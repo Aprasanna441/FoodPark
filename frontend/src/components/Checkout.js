@@ -16,8 +16,20 @@ const Checkout = () => {
     const [method,setMethod]=useState("")
     const [error,setError]=useState("")
 
-    const getLocation=(e)=>{
-        setLocation(e.target.value)
+    const getLocation=()=>{
+      console.log('hi')
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position)=>{
+              console.log(position.coords.latitude,position.coords.longitude)
+              setLocation(`${position.coords.latitude},${position.coords.longitude}`)
+            }
+          );
+         
+        } else { 
+          setLocation("")
+        }
+      
 
     }
 
@@ -38,13 +50,15 @@ const Checkout = () => {
   
 
   const submitHandler = async (e) => {
-e.preventDefault()
+    e.preventDefault()
+   
+
 const dataa=new FormData(e.currentTarget)
 
 
 const actualData={
     payment_method:method,
-    delivery_address:location===""?dataa.get("location"):location,
+    delivery_address:location,
     phoneNumber:dataa.get("phone"),
     status:"Pending and Unpaid",
     order_data:data,
@@ -67,10 +81,20 @@ const actualData={
     }
 
     else{
-      localStorage.removeItem("cartitem")
+        localStorage.removeItem("cartitem")
+        if (dataa.get("method")=="Cash In Hand"){
+          navigate('/')
+
+        }
+        else if (dataa.get("method")=="Cash In Hand"){
+          navigate('/esewa',{state:{total_amount:result.info.total_amount,id:result.info.id}})
+        }
+        else{
       
-        navigate('/esewa',{state:{total_amount:result.info.total_amount,id:result.info.id}})
+         navigate('/khalti',{state:{total_amount:result.info.total_amount,id:result.info.id}})
+        }
     }
+  
   };
 
 
@@ -143,9 +167,10 @@ const actualData={
             name="location"
             variant="outlined"
            label="Enter city,street and house number or longitude latitude"
+           onChange={(e)=>setLocation(e.target.value)}
             
           />OR
-          <Button variant="outlined" onSubmit={()=>getLocation}>Get Current Location</Button> <br />
+          <Button variant="outlined" onClick={getLocation}>Get Current Location</Button> <br />
           <Button variant="contained" type="submit">Submit</Button>
            
 

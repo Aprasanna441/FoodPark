@@ -1,7 +1,7 @@
 import express from 'express'
 const router=express.Router()
 import  {checkToken} from '../Middlewares/userMiddleware.js'
-import { makeOrder,viewOrder } from '../controllers/orderController.js'
+import { makeOrder,viewOrder,payOrder } from '../controllers/orderController.js'
 
 
 
@@ -14,6 +14,9 @@ router.get('/vieworder',checkToken)
 router.post('/makeorder',makeOrder)
 
 router.get('/vieworder',viewOrder)
+
+// public routes
+router.post('/payorder',payOrder)
 
 export default router
 

@@ -22,7 +22,7 @@ const MyCart = () => {
   return (
     <div className={theme === "dark" ? " bg-dark" : ""}>
       <h1 style={{textAlign:'center',color:'red'}}>MY CART</h1>
-      {JSON.parse(localStorage.getItem("cartitem")).length>=1 ? (
+      {JSON.parse(localStorage.getItem("cartitem")).length>=1? (
         <>
           <table className={theme === "dark" ? "table table-dark" : "table"}>
             <thead className="thead-dark">
@@ -101,16 +101,17 @@ const MyCart = () => {
             <span style={{ color: "green" }}>GRAND TOTAL:</span> Rs.
             {totalPrice()}{" "}
           </p>
-        </>
-      ) : (
-        <h1>YOUR CART IS EMPTY</h1>
-      )}
-      <button
+          <button
         className="btn btn-primary"
         onClick={() => navigate('/checkout')}
       >
         CHECK OUT
       </button>
+        </>
+      ) : (
+        <h1>YOUR CART IS EMPTY</h1>
+      )}
+      
     </div>
   );
 };
