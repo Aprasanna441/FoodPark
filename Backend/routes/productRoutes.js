@@ -1,7 +1,7 @@
 import express from "express";
 
 const router=express.Router();
-import { showProduct } from "../controllers/productController.js";
+import { showProduct,searchProduct } from "../controllers/productController.js";
 
 
 //middlewares
@@ -10,6 +10,7 @@ import { showProduct } from "../controllers/productController.js";
 
 //public routes
 router.get('/allproducts',showProduct)
+router.get('/searchproducts',searchProduct)
 
 
 //protected routes

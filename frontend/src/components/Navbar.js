@@ -44,6 +44,14 @@ const Navbar = () => {
         HOME{" "}
       </NavLink>
 
+      <NavLink
+        className="nav-link text-dark font-weight-bold "
+        style={{ fontWeight: "bolder",marginLeft:10 }}
+        to="/categories"
+      >
+        CATEGORIES{" "}
+      </NavLink>
+
       <button
         className="navbar-toggler"
         type="button"

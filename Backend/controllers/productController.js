@@ -8,5 +8,11 @@ export const showProduct= async (req,res)=>{
     res.status(200).send({message:"namasete",data:data})
 }
 
+export const searchProduct=async (req,res)=>{
+const para=req.query.q
 
+
+const result=await productModel.find({'name':{'$regex': para,'$options': 'i'}})
+res.status(200).send({status:"Success",data:result})
+}
 

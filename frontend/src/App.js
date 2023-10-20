@@ -22,6 +22,7 @@ import MyOrders from './pages/MyOrders';
 import ChangePassword from './pages/ChangePassword';
 import ResetPassword from './pages/ResetPassword';
 import KhaltiVerify from './pages/KhaltiVerify';
+import Categorical from './pages/Categorical';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
     <Routes>
       <Route  path="/" element={<Layout/>}>
       <Route  path="/" element={<Home/>}/>
+      <Route  path="/categories" element={<Categorical/>}/>
       <Route  path="/success" element={<Success/>}/>
       <Route  path="/fail" element={<Failure/>}/>
       <Route  path="/resetpassword/:id/:token" element={<ResetPassword/>}/>

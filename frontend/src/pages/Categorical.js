@@ -7,10 +7,7 @@ import { useTheme } from "../Features/ThemeReducer";
 
 import Card from "../components/Card";
 
-const Home = () => {
-
-const [query,setQuery]=useState('')
-
+const Categorical = () => {
   const {state,dispatch}=useCart()
   const {theme,changeTheme}=useTheme()
   const lo=localStorage.getItem("cartitem")
@@ -25,42 +22,28 @@ const [query,setQuery]=useState('')
   const [currentCategory,setCurrentCategory]=useState(null)
   
 
-  const search=async ()=>{
-    
-    const res=await fetch(`http://localhost:8080/api/products/searchproducts?q=${query}`,{
-     
-     method:'GET',
-     headers:{
-      'Content-Type':'application/json'
-     }
-    })
-    const result=await res.json()
-    console.log(result.data)
-    setArr(result.data)
-  }
   
 
  
   const setProducts = async () => {
     const res = await fetch("http://localhost:8080/api/products/allproducts");
     const result = await res.json();
-    // setArr(result.data)
 
-    // //code to  remove duplicates from CategoryName that came from Product CategoryName
-    // let unique = [];
-    // result.data.forEach((item) => {
-    //   if (!unique.includes(item.CategoryName)) {
-    //     unique.push(item.CategoryName);
-    //   }
-    // });
-    // setCategory(unique);
+    //code to  remove duplicates from CategoryName that came from Product CategoryName
+    let unique = [];
+    result.data.forEach((item) => {
+      if (!unique.includes(item.CategoryName)) {
+        unique.push(item.CategoryName);
+      }
+    });
+    setCategory(unique);
     return setArr(result.data.slice(page,page+6));
-   };
+  };
 
   useEffect(() => {
     setProducts();
     
-  },[]);
+  },[arr]);
 
   return (
     <>
@@ -74,17 +57,14 @@ const [query,setQuery]=useState('')
             className="form-control me-2 w-75 bg-white text-dark"
             type="search"
             placeholder="Type in..."
-            aria-label="Searcch"
-            name="searchquery"
-            onChange={(e)=>setQuery(e.target.value)}
-        
+            aria-label="Search"
           />
-          <button onClick={search} className="btn text-white bg-success"     type="submit">
+          <button className="btn text-white bg-success" type="submit">
             Search
           </button>
         </form>
         
-        {/* <select
+        <select
           name=""
           id=""
           className="form-select bg-info w-50"
@@ -96,12 +76,11 @@ const [query,setQuery]=useState('')
           {category.map((item) => (
             <option value={item}>{item}</option>
           ))}
-        </select> */}
+        </select>
        
        
         
         <div className="d-flex flex-wrap   justify-content-around mt-4  align-items-center  ">
-          {arr==""?<h1>Empty</h1>:""}
           {arr.map((item) => 
             (currentCategory === null || item.CategoryName === currentCategory)?
             <Card
@@ -148,4 +127,4 @@ const [query,setQuery]=useState('')
     </>
   );
 };
-export default Home;
+export default Categorical;
