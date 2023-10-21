@@ -31,6 +31,9 @@ const Dashboard = () => {
    
     <NavLink to="/changepassword" className="btn btn-primary">Change Password</NavLink>
     <NavLink to="/myorders" className="btn btn-primary">See Orders</NavLink>
+    {data.isSeller?
+    <NavLink to="/delivery" className="btn btn-warning">Deliveries</NavLink>:""}
+
     
   </div>
   

@@ -6,6 +6,7 @@ import connectDb from "./config/connectDb.js"
 
 import  productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+import sellerRoutes from './routes/sellerRoutes.js'
 import orderRoutes from "./routes/orderRoutes.js"
 
 
@@ -20,6 +21,7 @@ app.use(express.json())
 app.use("/api/products",productRoutes)
 app.use("/api/account",userRoutes)
 app.use("/api/orders",orderRoutes)
+app.use("/api/delivery",sellerRoutes)
 
 
 

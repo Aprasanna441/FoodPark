@@ -21,6 +21,16 @@ const userSchema=new mongoose.Schema({
         type:Date,
         default:Date.now
 
+    },
+    isSeller:{
+        type:Boolean,
+        default:false,
+        required:true
+    },
+    isAdmin:{
+        type:Boolean,
+        default:false,
+        required:true
     }
 })
 

@@ -6,6 +6,7 @@ import {CartProvider} from './Features/ContextReducer';
 import { ThemeProvider } from './Features/ThemeReducer';
 import Layout from './pages/Layout';
 
+
 import {
   Routes, 
   Router,
@@ -23,6 +24,7 @@ import ChangePassword from './pages/ChangePassword';
 import ResetPassword from './pages/ResetPassword';
 import KhaltiVerify from './pages/KhaltiVerify';
 import Categorical from './pages/Categorical';
+import Delivery from './pages/Delivery';
 
 function App() {
   return (
@@ -42,6 +44,7 @@ function App() {
       <Route  path="/resetpassword/:id/:token" element={<ResetPassword/>}/>
       <Route  path="/Khaltiverify" element={<KhaltiVerify/>}/>
       <Route  path="/dashboard" element={localStorage.getItem("authToken")?<Dashboard/>:<Home/>}/>
+      <Route  path="/delivery" element={localStorage.getItem("authToken")?<Delivery/>:<Home/>}/>
       <Route  path="/checkout" element={localStorage.getItem("authToken")?<Checkout/>:<Home/>}/>
       <Route  path="/myorders" element={localStorage.getItem("authToken")?<MyOrders/>:<Home/>}/>
       <Route  path="/changepassword" element={localStorage.getItem("authToken")?<ChangePassword/>:<Home/>}/>
