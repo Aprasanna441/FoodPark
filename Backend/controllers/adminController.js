@@ -75,3 +75,10 @@ export const adminViewProduct=async (req,res)=>{
   res.status(200).send({status:"Success",data:req.user})
 
 }
+
+export const getAllUsers=async (req,res)=>{
+ const data=await (await userModel.find().select("-password"))
+
+ res.status(200).send({status:"Success",data:data})
+
+}

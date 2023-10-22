@@ -8,7 +8,7 @@ export const checkAdmin=async (req,res,next)=>{
       try{
         const token=authorization.split(' ')[1]
         const {userID}=jwt.verify(token,process.env.JWT_SECRET_KEY)
-        req.user = await userModel.findById(userID)
+        req.user = await userModel.findById(userID).select('-password')
         if (req.user.isAdmin){
             next()
         }
