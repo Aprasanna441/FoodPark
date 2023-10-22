@@ -62,7 +62,7 @@ const Card = ({ item }) => {
         
         <img className="card-img-top" src={item.img} alt="" />
         <div className="card-body">
-      
+      {item._id}
           <h5 className="card-title">{item.name}</h5>
           <p className="card-text">
             Some quick example text to build on the card title and make up the

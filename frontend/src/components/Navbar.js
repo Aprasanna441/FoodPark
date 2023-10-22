@@ -39,7 +39,7 @@ const Navbar = () => {
       <NavLink
         className="nav-link text-dark font-weight-bold "
         style={{ fontWeight: "bolder" }}
-        to="/products"
+        to="/"
       >
         HOME{" "}
       </NavLink>

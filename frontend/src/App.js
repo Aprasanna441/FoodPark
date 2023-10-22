@@ -5,6 +5,8 @@ import MyCart from './pages/MyCart';
 import {CartProvider} from './Features/ContextReducer';
 import { ThemeProvider } from './Features/ThemeReducer';
 import Layout from './pages/Layout';
+import Admin from './pages/AdminLogin'
+import AdminDashboard from './pages/AdminDashboard'
 
 
 import {
@@ -25,8 +27,35 @@ import ResetPassword from './pages/ResetPassword';
 import KhaltiVerify from './pages/KhaltiVerify';
 import Categorical from './pages/Categorical';
 import Delivery from './pages/Delivery';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
+
+  const [admin,setIsAdmin]=useState(false)
+  const isAuthenticated= async ()=>{
+  const res=await fetch("http://localhost:8080/api/admin/getadmindata",
+  {
+      method:"GET",
+      headers:{
+          'Content-Type':'application/json',
+          'authorization':`Bearer ${localStorage.getItem("authToken")}`
+      }
+  })
+
+const result= await res.json()
+console.log(result)
+if ( !result.data){
+  setIsAdmin(false)
+}
+else{
+  setIsAdmin(true)
+}
+  }
+ 
+  useEffect(()=>{
+    isAuthenticated()
+  },)
   return (
 <>
 <ThemeProvider>
@@ -48,6 +77,7 @@ function App() {
       <Route  path="/checkout" element={localStorage.getItem("authToken")?<Checkout/>:<Home/>}/>
       <Route  path="/myorders" element={localStorage.getItem("authToken")?<MyOrders/>:<Home/>}/>
       <Route  path="/changepassword" element={localStorage.getItem("authToken")?<ChangePassword/>:<Home/>}/>
+
       
       <Route  path="/mc" element={localStorage.getItem("authToken")?<MyCart/>:<Home/>}/>
         </Route>
@@ -55,6 +85,9 @@ function App() {
       
       <Route  path="/esewa" element={<Esewa/>}/>
       <Route  path="/Khalti" element={<Khalti/>}/>
+      <Route  path="/adminlogin" element={<Admin/>}/>
+      <Route  path="/admindashboard" element={admin?<AdminDashboard/>:<Admin/>} />
+   
 
 
     </Routes>

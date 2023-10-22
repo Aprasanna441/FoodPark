@@ -46,7 +46,7 @@ const [query,setQuery]=useState('')
     const result = await res.json();
     // setArr(result.data)
 
-    // //code to  remove duplicates from CategoryName that came from Product CategoryName
+    //code to  remove duplicates from CategoryName that came from Product CategoryName
     // let unique = [];
     // result.data.forEach((item) => {
     //   if (!unique.includes(item.CategoryName)) {
@@ -54,13 +54,17 @@ const [query,setQuery]=useState('')
     //   }
     // });
     // setCategory(unique);
-    return setArr(result.data.slice(page,page+6));
+    return setArr(result.data.slice(page,page+3));
    };
+
+   const changePage=async ()=>{
+    return setArr(arr.slice(page,page+3));
+   }
 
   useEffect(() => {
     setProducts();
     
-  },[]);
+  },);
 
   return (
     <>
@@ -103,13 +107,12 @@ const [query,setQuery]=useState('')
         <div className="d-flex flex-wrap   justify-content-around mt-4  align-items-center  ">
           {arr==""?<h1>Empty</h1>:""}
           {arr.map((item) => 
-            (currentCategory === null || item.CategoryName === currentCategory)?
+            
             <Card
             
             item={item}
           
-          /> : 
-          null
+          /> 
 
           
          
@@ -130,18 +133,18 @@ const [query,setQuery]=useState('')
       <div className="d-flex justify-content-center mt-5"><nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item">
-      <a class="page-link" href="#" onClick={()=>page>0?setPage(page-6):page} aria-label="Previous">
+      <button class="page-link" onClick={()=>page>0?setPage(page-3):page} aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
         <span class="sr-only">Previous</span>
-      </a>
+      </button>
     </li>
-     <li class="page-item"><a class="page-link" href="#">{page/6}</a></li>
+     <li class="page-item"><a class="page-link" href="#">{page/3}</a></li>
 
     <li class="page-item">
-      <a class="page-link" href="#" onClick={()=>setPage(page+6)} aria-label="Next">
+      <button class="page-link"  onClick={()=>setPage(page+3)} aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
         <span class="sr-only">Next</span>
-      </a>
+      </button>
     </li>
   </ul>
 </nav></div>
