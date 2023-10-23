@@ -1,5 +1,6 @@
 import productModel from '../models/Product.js'
 import userModel from '../models/User.js'
+import orderModel from '../models/Orders.js'
 import { body, validationResult } from "express-validator";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
@@ -93,7 +94,23 @@ console.log(id)
 
 export const updateUser=async (req,res)=>{
 const {email,id,name,location,isSeller,isAdmin}=req.body
-await userModel.findByIdAndUpdate(id,{$set:{email:email,name:name,isSeller:isSeller,isAdmin:isAdmin}})
+await userModel.findByIdAndUpdate(id,{$set:{email:email,name:name,isSeller:isSeller,isAdmin:isAdmin,location:location}})
 
-console.log(email)
 }
+
+
+export const getAllOrders=async (req,res)=>{
+  const data=await orderModel.find()
+  res.status(200).send({status:"Success",data:data})
+
+}
+
+export const updateOrder=async (req,res)=>{
+  const {status,id}=req.body
+  await orderModel.findByIdAndUpdate(id,{$set:{status:status}})
+}
+
+
+
+
+

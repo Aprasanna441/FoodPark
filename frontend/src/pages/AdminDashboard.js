@@ -15,7 +15,7 @@ const AdminDashboard = () => {
   <button class="p-2 btn btn-primary m-2" onClick={()=>setSection("Product")}>PRODUCT</button>
 
    <button class="p-2 btn btn-primary m-2" onClick={()=>setSection("Order")}>ORDERS</button>
-   <button class="p-2 btn btn-primary m-2" onClick={()=>setSection("Delivery")}>DELIVERIES</button>
+   {/* <button class="p-2 btn btn-primary m-2" onClick={()=>setSection("Delivery")}>DELIVERIES</button> */}
 
     </div>
     <div>
