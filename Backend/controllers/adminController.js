@@ -70,15 +70,30 @@ export const adminViewProduct=async (req,res)=>{
  }
 
  export const getAdminData=async (req,res)=>{
-   console.log("admin")
+   
  
   res.status(200).send({status:"Success",data:req.user})
 
 }
 
 export const getAllUsers=async (req,res)=>{
- const data=await (await userModel.find().select("-password"))
-
+const data=await userModel.find().select("-password")
  res.status(200).send({status:"Success",data:data})
 
+}
+
+
+
+export const deleteUser=async (req,res)=>{
+const {id}=req.body
+console.log(id)
+ await userModel.findByIdAndDelete(id)
+
+}
+
+export const updateUser=async (req,res)=>{
+const {email,id,name,location,isSeller,isAdmin}=req.body
+await userModel.findByIdAndUpdate(id,{$set:{email:email,name:name,isSeller:isSeller,isAdmin:isAdmin}})
+
+console.log(email)
 }
