@@ -4,7 +4,9 @@ const Order = () => {
   const [data,setData]=useState([])
   const [modal,setModal]=useState(false)
   const [modalData,setModalData]=useState([])
-const [orderCount,setOrderCount]=useState('')
+const [deliverCount,setOrder1Count]=useState()
+const [paidPlacedCount,setOrder2Count]=useState()
+const [unpaidPlacedCount,setOrder3Count]=useState()
 
   const getOrders= async ()=>{
     
@@ -18,30 +20,40 @@ const [orderCount,setOrderCount]=useState('')
     })
     const result=await res.json()
     setData(result.data)
+
+ 
+    let deliveredCount=0;
+    let paidCount=0;
+  let unpaidCount=0;
+ 
+  data.forEach((e)=>{
+    e.status==="Delivered and Paid"?deliveredCount++:
+    e.status==="Placed and Paid"?paidCount++:unpaidCount++
+   
+    
+  })
+  setOrder1Count(deliveredCount)
+  setOrder2Count(paidCount)
+  setOrder3Count(unpaidCount)
       }
 
-     const sort=()=>{
-      const deliveredCount=0
-      const paidCount=0
-    const unpaidCount=0
-     data.forEach((e)=>{
-    e.status==="Delivered and Paid"?deliveredCount+=1:
-    e.status==="Placed and Paid"?paidCount+=1:unpaidCount+=1
-   
-    setOrderCount(deliveredCount)
-  })
-      
-     }
+
+    
+
 
       useEffect(()=>{
-        getOrders()
+        getOrders();
+        
+        
+       
       })
   return (
     <div>
       <h1>ALL ORDERS</h1>
       <ul>
-        <li>Delivered: {orderCount}</li>
-        <li>Placed</li>
+        <li>Delivered: {deliverCount}</li>
+        <li>Placed:{paidPlacedCount}</li>
+        <li>Unpaid:{unpaidPlacedCount}</li>
       </ul>
       <button className='btn btn-primary' onClick={()=>setModal(!modal)}>CLOSE</button>
       {!modal?
@@ -63,6 +75,7 @@ const [orderCount,setOrderCount]=useState('')
       <td>{item._id.slice(6,9)}</td>
       <td>{item.email}</td>
       <td>{item.paymentMethod}</td>
+      <td>{item.status}</td>
       <td><button className='btn-sm btn-primary btn' onClick={()=>{
         setModalData(item)
         setModal(!modal)
